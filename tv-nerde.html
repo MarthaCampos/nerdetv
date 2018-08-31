@@ -69,10 +69,10 @@
                                 <ul id="accordion" class="nav navbar-nav navbar-left no-margin alt-font text-normal" data-in="fadeIn" data-out="fadeOut">
                                     <!-- start menu item -->
                                     <li class="dropdown megamenu-fw">
-                                        <li><a class="page-scroll" href="http://www.nerde.com.br">Home</a></li>
-                            <li><a class="page-scroll" href="http://www.nerde.com.br/#about">Sobre</a></li>                         
-                            <li><a class="page-scroll" href="http://www.nerde.com.br/interno">Nerde Interno</a></li>
-                            <li><a class="page-scroll" href="http://www.nerde.com.br/#feature">Depoimentos</a></li>
+                                        <li><a class="page-scroll" href="index.html">Home</a></li>
+                            <li><a class="page-scroll" href="index.html">Sobre</a></li>                         
+                            <li><a class="page-scroll" href="http://www.nerde.com.br/interno/">Nerde Interno</a></li>
+                            <li><a class="page-scroll" href="index.html">Depoimentos</a></li>
                             
                                              
                            <!-- <li><a class="page-scroll" href="#blog">Professores</a></li> -->
@@ -178,6 +178,7 @@
         
         <section>
             <div class="videos">
+                    <a class="my-selector" href="https://www.youtube.com/watch?v=5Lp0GJNTRV0">Open DailyMotion video</a>
             <iframe width="280" height="157" src="https://www.youtube.com/embed/QlaSpudeU8A?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             <iframe width="280" height="157" src="https://www.youtube.com/embed/ALqiRW4UR1A?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             <iframe width="280" height="157" src="https://www.youtube.com/embed/i9Xr8UiUguE?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -193,7 +194,7 @@
             <iframe width="280" height="157" src="https://www.youtube.com/embed/_cCONk5GQqw?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             <iframe width="280" height="157" src="https://www.youtube.com/embed/EFDNA6FsrrU?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             <iframe width="280" height="157" src="https://www.youtube.com/embed/n-fHF1oKveY?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe width="280" height="157" src="https://www.youtube.com/embed/E2U8Awk-TJU?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe width="280" height="157" src="https://www.youtube.com/embed/E2U8Awk-TJU?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>            
             <div class="btn-dual"><a href="https://www.youtube.com/channel/UCmoAqxwdbzGr4eBlCXTYLAQ/videos" target="_blank" class="btn btn-dark-gray btn-rounded btn-small btn-center">Veja mais</a></div>
             </div>
        </section>
@@ -419,6 +420,39 @@
           gtag('js', new Date());
 
           gtag('config', 'UA-123084212-1');
+        </script>
+        <!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>
+                $(document).ready(function() {
+                $('.my-selector').magnificPopup({type:'iframe'});
+                });
+
+                $('.my-selector').magnificPopup({
+                type: 'iframe',
+                iframe: {
+                patterns: {
+                youtube: {
+                index: 'youtube.com/', 
+                id: function(url) {        
+                    var m = url.match(/[\\?\\&]v=([^\\?\\&]+)/);
+                    if ( !m || !m[1] ) return null;
+                    return m[1];
+                },
+                src: '//www.youtube.com/embed/%id%?autoplay=1'
+                },
+                vimeo: {
+                index: 'vimeo.com/', 
+                id: function(url) {        
+                    var m = url.match(/(https?:\/\/)?(www.)?(player.)?vimeo.com\/([a-z]*\/)*([0-9]{6,11})[?]?.*/);
+                    if ( !m || !m[5] ) return null;
+                    return m[5];
+                },
+                src: '//player.vimeo.com/video/%id%?autoplay=1'
+                }
+            }
+        }
+    });
         </script>
     </body>
 </html>
